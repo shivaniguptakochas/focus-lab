@@ -1,0 +1,125 @@
+/* ==========================================================================
+   FOCUSLAB - RESPONSIVE STYLESHEET
+   Mobile, Tablet, and Touch Layout Adaptations
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .dashboard-grid-2col {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .content-viewport {
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Sidebar Drawer on Mobile */
+  .sidebar {
+    transform: translateX(-100%);
+    box-shadow: none;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+  }
+
+  .sidebar-overlay.active {
+    display: block;
+  }
+
+  .main-wrapper {
+    margin-left: 0;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .header-tagline {
+    display: none;
+  }
+
+  .topbar {
+    padding: 0 1rem;
+  }
+
+  .content-viewport {
+    padding: 1rem;
+  }
+
+  /* Timer Adaptation */
+  .circular-timer-wrapper {
+    width: 240px;
+    height: 240px;
+  }
+
+  .timer-time-display {
+    font-size: 2.8rem;
+  }
+
+  /* Experiment Mobile */
+  .experiment-condition-banner {
+    grid-template-columns: 1fr;
+  }
+
+  .rating-button-group {
+    flex-wrap: wrap;
+  }
+
+  .rating-label {
+    min-width: 45px;
+  }
+
+  .modal-window {
+    margin: 1rem;
+    max-height: 95vh;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+  }
+
+  .view-header h2 {
+    font-size: 1.35rem;
+  }
+
+  .book-alignment-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timer-presets-row {
+    gap: 0.35rem;
+  }
+
+  .btn-preset-time {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .toast-container {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+}

@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocusLab - Study Smarter. Stay Focused. Grow Every Day.</title>
+  <meta name="description" content="University-Level Student Productivity & Experimental Research Platform for Bennett University BU100 SDG Action Lab (SDG 4 Quality Education & SDG 3 Good Health).">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="responsive.css">
+
+  <!-- Chart.js for Interactive Charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- SVG Gradient Definitions for Circular Timer -->
+  <svg width="0" height="0" style="position: absolute;">
+    <defs>
+      <linearGradient id="timerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#6366F1" />
+        <stop offset="50%" stop-color="#8B5CF6" />
+        <stop offset="100%" stop-color="#EC4899" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <div class="app-container">
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- SIDEBAR NAVIGATION (All 15 Views) -->
+    <aside class="sidebar" id="app-sidebar">
+      <div class="sidebar-header">
+        <div class="brand">
+          <div class="brand-icon">⚡</div>
+          <div>
+            <div class="brand-title">FocusLab <span class="brand-badge">BU100</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-scroll">
+        <div class="nav-group-title">Study & Productivity</div>
+        <ul class="nav-list">
+          <li>
+            <a href="#overview" class="nav-item active" data-view="overview">
+              <span class="nav-icon">📊</span>
+              <span>Overview</span>
+            </a>
+          </li>
+          <li>
+            <a href="#focus-room" class="nav-item" data-view="focus-room">
+              <span class="nav-icon">⏱️</span>
+              <span>Focus Room</span>
+            </a>
+          </li>
+          <li>
+            <a href="#pomodoro" class="nav-item" data-view="pomodoro">
+              <span class="nav-icon">🍅</span>
+              <span>Pomodoro Timer</span>
+            </a>
+          </li>
+          <li>
+            <a href="#tasks" class="nav-item" data-view="tasks">
+              <span class="nav-icon">📝</span>
+              <span>My Tasks</span>
+            </a>
+          </li>
+          <li>
+            <a href="#goals" class="nav-item" data-view="goals">
+              <span class="nav-icon">🎯</span>
+              <span>Daily Goals</span>
+            </a>
+          </li>
+          <li>
+            <a href="#distractions" class="nav-item" data-view="distractions">
+              <span class="nav-icon">📵</span>
+              <span>Distraction Tracker</span>
+            </a>
+          </li>
+          <li>
+            <a href="#detox" class="nav-item" data-view="detox">
+              <span class="nav-icon">🛡️</span>
+              <span>Digital Detox</span>
+            </a>
+          </li>
+          <li>
+            <a href="#tree" class="nav-item" data-view="tree">
+              <span class="nav-icon">🌱</span>
+              <span>Virtual Tree</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-group-title">Analytics & Intelligence</div>
+        <ul class="nav-list">
+          <li>
+            <a href="#analytics" class="nav-item" data-view="analytics">
+              <span class="nav-icon">📈</span>
+              <span>Analytics</span>
+            </a>
+          </li>
+          <li>
+            <a href="#history" class="nav-item" data-view="history">
+              <span class="nav-icon">🕒</span>
+              <span>Session History</span>
+            </a>
+          </li>
+          <li>
+            <a href="#experiment" class="nav-item" data-view="experiment">
+              <span class="nav-icon">🔬</span>
+              <span>Experiment Lab</span>
+            </a>
+          </li>
+          <li>
+            <a href="#challenge" class="nav-item" data-view="challenge">
+              <span class="nav-icon">🔥</span>
+              <span>Focus Challenge</span>
+            </a>
+          </li>
+          <li>
+            <a href="#leaderboard" class="nav-item" data-view="leaderboard">
+              <span class="nav-icon">🏆</span>
+              <span>Leaderboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="#assistant" class="nav-item" data-view="assistant">
+              <span class="nav-icon">🤖</span>
+              <span>AI Study Assistant</span>
+            </a>
+          </li>
+          <li>
+            <a href="#settings" class="nav-item" data-view="settings">
+              <span class="nav-icon">⚙️</span>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.2rem;">Bennett University BU100</div>
+        <div style="font-size: 0.72rem; line-height: 1.35; color: var(--text-secondary); margin-bottom: 0.4rem;">
+          <div>• Hannu Kumar Gupta <span style="font-size: 0.68rem; color: var(--text-muted);">(S26CSEU3130)</span></div>
+          <div>• Vidushi Yaduvanshi <span style="font-size: 0.68rem; color: var(--text-muted);">(S26BCMCAU0004)</span></div>
+          <div>• Nitya Bhadoria <span style="font-size: 0.68rem; color: var(--text-muted);">(M26BCMIFU0077)</span></div>
+        </div>
+        <div class="sdg-badge-strip">
+          <span class="sdg-tag">SDG 4 Quality Ed</span>
+          <span class="sdg-tag">SDG 3 Health</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN WRAPPER -->
+    <div class="main-wrapper">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" id="btn-mobile-menu" aria-label="Toggle Navigation">☰</button>
+          <span class="header-tagline">Study Smarter. Stay Focused. Grow Every Day.</span>
+        </div>
+        <div class="topbar-right">
+          <div class="in-app-screentime-chip" id="header-screen-time" title="Tracks active tab engagement inside FocusLab application only.">
+            ⏱️ In-App: 0m
+          </div>
+          <button class="btn btn-ghost" id="btn-open-methodology" title="BU100 Methodology & Book Connections">📚 BU100 Reading</button>
+          <button class="btn btn-ghost" id="btn-open-help" title="FAQ & User Guide">❓ Help</button>
+          <button class="btn btn-secondary" id="btn-theme-toggle">☀️ Light Mode</button>
+        </div>
+      </header>
+
+      <!-- CONTENT VIEWPORT (15 Dynamic Views) -->
+      <main class="content-viewport">
+
+        <!-- VIEW 1: OVERVIEW -->
+        <section id="view-overview" class="view-section active">
+          <div class="view-header">
+            <div>
+              <h2>Productivity & Research Dashboard</h2>
+              <p>Welcome back! Monitor study velocity, daily targets, and experimental insights.</p>
+            </div>
+            <div>
+              <button class="btn btn-primary" data-action="start-focus">⚡ Start Focus Session</button>
+            </div>
+          </div>
+
+          <!-- Summary Metric Cards -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Total Study Hours</div>
+              <div class="stat-value" id="stat-total-hours">0.0 hrs</div>
+              <div class="stat-footer text-muted">Across all focus modes</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Completed Sessions</div>
+              <div class="stat-value" id="stat-completed-sessions">0</div>
+              <div class="stat-footer text-muted">Sprint & Pomodoro cycles</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Average Focus Score</div>
+              <div class="stat-value text-indigo" id="stat-avg-focus-score">0%</div>
+              <div class="stat-footer text-muted">Duration & distraction formula</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Current Streak</div>
+              <div class="stat-value text-success" id="stat-current-streak">0 days</div>
+              <div class="stat-footer text-muted">Consecutive daily study</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Today's Goal</div>
+              <div class="stat-value" id="stat-today-goal">0 / 120m</div>
+              <div class="stat-footer text-muted">Daily target progress</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">FocusLab Screen Time</div>
+              <div class="stat-value text-warning" id="stat-active-screen-time">0 min</div>
+              <div class="stat-footer text-muted">Active tab duration only</div>
+            </div>
+          </div>
+
+          <!-- Dashboard Grid: Tasks & Recommendations -->
+          <div class="dashboard-grid-2col">
+            <div class="card">
+              <div class="card-title-row">
+                <h3>📌 Priority Tasks & Study Targets</h3>
+                <a href="#tasks" class="btn btn-ghost" data-view="tasks">View All Tasks →</a>
+              </div>
+              <div id="overview-tasks-preview" class="tasks-list">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title-row">
+                <h3>💡 Personalized Study Recommendations</h3>
+                <span class="badge badge-success">Heuristic</span>
+              </div>
+              <div id="overview-recommendations">
+                <!-- Dynamically populated based on real stats -->
+              </div>
+            </div>
+          </div>
+
+          <!-- BU100 Experiment Highlight Banner -->
+          <div class="card" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.08) 100%); border-color: rgba(99, 102, 241, 0.3);">
+            <div class="card-title-row">
+              <div>
+                <span class="badge badge-mode">BU100 SDG Action Lab (TREP)</span>
+                <h3 style="margin-top: 0.4rem;">Research Study: Phone-Free Study vs. Normal Phone Access</h3>
+                <p style="color: var(--text-secondary); font-size: 0.88rem; margin-top: 0.2rem;">
+                  Investigating working memory capacity, attentional fragmentation, and academic quiz performance across 10 student participants.
+                </p>
+              </div>
+              <button class="btn btn-primary" data-action="open-experiment">Open Experiment Lab 🔬</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 2: FOCUS ROOM -->
+        <section id="view-focus-room" class="view-section">
+          <div class="view-header">
+            <div>
+              <h2>Smart Focus Room</h2>
+              <p>Customizable countdown sprint with distraction tracking and optional ambient audio.</p>
+            </div>
+          </div>
+
+          <div class="card timer-hero-container">
+            <div class="circular-timer-wrapper">
+              <svg class="timer-svg" viewBox="0 0 280 280">
+                <circle class="timer-track" cx="140" cy="140" r="130"></circle>
+                <circle class="timer-progress" id="timer-progress-ring" cx="140" cy="140" r="130"></circle>
+              </svg>
+              <div class="timer-inner-content">
+                <div class="timer-time-display" id="timer-time">25:00</div>
+                <div class="timer-mode-badge" id="timer-mode-badge">Focus Mode</div>
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="timer-controls-row">
+              <button class="btn btn-primary" id="btn-timer-start" style="padding: 0.75rem 1.75rem; font-size: 1rem;">▶ Start Session</button>
+              <button class="btn btn-secondary" id="btn-timer-pause" style="display: none; padding: 0.75rem 1.75rem; font-size: 1rem;">⏸ Pause</button>
+              <button class="btn btn-ghost" id="btn-timer-reset">↺ Reset</button>
+            </div>
+
+            <!-- Preset Buttons -->
+            <div class="timer-presets-row">
+              <button class="btn-preset-time" data-mins="15">15 min</button>
+              <button class="btn-preset-time active" data-mins="25">25 min (Standard)</button>
+              <button class="btn-preset-time" data-mins="45">45 min (Deep Work)</button>
+              <button class="btn-preset-time" data-mins="60">60 min</button>
+            </div>
+
+            <!-- Custom Duration Input -->
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+              <input type="number" id="input-custom-time" class="input-text" style="width: 100px; text-align: center;" placeholder="Mins" min="1" max="180" value="25">
+              <button class="btn btn-secondary" id="btn-apply-custom-time">Set Minutes</button>
+            </div>
+
+            <!-- Ambient Sound Controller -->
+            <div class="ambient-bar">
+              <span>🎧 Ambient Sound:</span>
+              <select id="select-ambient-sound" class="ambient-select">
+                <option value="none">Off (Silence)</option>
+                <option value="binaural">10Hz Alpha Binaural Beats (Focus)</option>
+                <option value="rain">Soft Rain Simulation</option>
+                <option value="pinknoise">Pink Noise (Gentle Masking)</option>
+                <option value="whitenoise">White Noise (Focus Flow)</option>
+                <option value="lofi">Lofi Harmonic Chord Drone</option>
+              </select>
+              <button class="btn btn-secondary" id="btn-toggle-ambient">▶ Play</button>
+              <span style="font-size: 0.8rem;">Vol:</span>
+              <input type="range" id="slider-ambient-volume" class="ambient-slider" min="0" max="1" step="0.05" value="0.5">
+            </div>
+
+            <!-- Distraction Quick Counter in Session -->
+            <div style="margin-top: 1.5rem; text-align: center;">
+              <span style="font-size: 0.85rem; color: var(--text-secondary); margin-right: 0.5rem;">Interrupted during this session?</span>
+              <button class="btn btn-secondary btn-log-distraction" data-category="Social Media">📱 Phone / Social</button>
+              <button class="btn btn-secondary btn-log-distraction" data-category="Messaging">💬 Message</button>
+              <button class="btn btn-secondary btn-log-distraction" data-category="Other">⚡ Other</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 3: POMODORO TIMER -->
+        <section id="view-pomodoro" class="view-section">
+          <div class="view-header">
+            <div>
+              <h2>Pomodoro Study Mode</h2>
+              <p>25-minute focus sprints with structured 5-minute short breaks and 15-minute long breaks after 4 cycles.</p>
+            </div>
+          </div>
+
+          <div class="dashboard-grid-2col">
+            <div class="card" style="text-align: center; padding: 2.5rem 1.5rem;">
+              <div class="timer-mode-badge" id="pomo-phase-badge">Phase: Work Session</div>
+              <div class="timer-time-display" id="pomo-timer-time" style="margin: 1.5rem 0;">25:00</div>
+              
+              <div class="timer-controls-row" style="justify-content: center;">
+                <button class="btn btn-primary" id="btn-pomo-start">▶ Start Pomodoro</button>
+                <button class="btn btn-secondary" id="btn-pomo-pause">⏸ Pause</button>
+                <button class="btn btn-ghost" id="btn-pomo-reset">↺ Reset</button>
+              </div>
+
+              <div style="margin-top: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+                Completed Cycles: <strong id="pomo-cycles-count" class="text-indigo">0</strong> / 4 until Long Break
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>⚙️ Customize Pomodoro Durations</h3>
+              <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.25rem;">
+                Tailor intervals to your personal cognitive endurance.
+              </p>
+              
+              <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <div>
+                  <label style="font-size: 0.85rem; color: var(--text-secondary); display: block; margin-bottom: 0.3rem;">Work Duration (Minutes):</label>
+                  <input type="number" id="input-pomo-work" class="input-text" value="25" min="5" max="90" style="width: 100%;">
+                </div>
+                <div>
+                  <label style="font-size: 0.85rem; color: var(--text-secondary); display: block; margin-bottom: 0.3rem;">Short Break Duration (Minutes):</label>
+                  <input type="number" id="input-pomo-break" class="input-text" value="5" min="1" max="30" style="width: 100%;">
+                </div>
+                <div>
+                  <label style="font-size: 0.85rem; color: var(--text-secondary); display: block; margin-bottom: 0.3rem;">Long Break Duration (Minutes):</label>
+                  <input type="number" id="input-pomo-long" class="input-text" value="15" min="5" max="60" style="width: 100%;">
+                </div>
+                <button class="btn btn-secondary" id="btn-save-pomo-settings">Save Custom Durations</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 4: MY TASKS -->
+        <section id="view-tasks" class="view-section">
+          <div class="view-header">
+            <div>
+              <h2>Study Task Manager</h2>
+              <p>Organize reading assignments, problem sets, and research milestones with priorities and deadlines.</p>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom: 1.5rem;">
+            <div class="task-input-bar">
+              <input type="text" id="input-new-task-title" class="input-text" placeholder="Add a new study task or reading assignment...">
+              <select id="select-task-priority" class="ambient-select">
+                <option value="high">High Priority</option>
+                <option value="medium" selected>Medium Priority</option>
+                <option value="low">Low Priority</option>
+              </select>
+              <input type="text" id="input-task-deadline" class="input-text" style="max-width: 130px;" placeholder="e.g. Today, Friday">
+              <input type="text" id="input-task-category" class="input-text" style="max-width: 120px;" placeholder="Subject / Tag">
+              <button class="btn btn-primary" id="btn-add-task">+ Add Task</button>
+            </div>
+
+            <div class="task-filter-row">
+              <button class="btn-filter-task active" data-filter="all">All Tasks</button>
+              <button class="btn-filter-task" data-filter="active">Active</button>
+              <button class="btn-filter-task" data-filter="completed">Completed</button>
+            </div>
+
+            <div id="tasks-list-container" class="tasks-list">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 5: DAILY GOALS -->
+        <section id="view-goals" class="view-section">
+          <div class="view-header">
+            <div>
+              <h2>Daily Study Goals</h2>
+              <p>Set daily study time commitments and track your progress throughout the day.</p>
+            </div>
+          </div>
+
+          <div class="dashboard-grid-2col">
+            <div class="card">
+              <div class="card-title-row">
+                <h3>🎯 Today's Study Target Progress</h3>
+                <span class="badge badge-success" id="goals-progress-percent">0%</span>
+              </div>
+
+              <div class="progress-bar-container" style="height: 12px;">
+                <div class="progress-bar-fill" id="goals-progress-bar" style="width: 0%;"></div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; margin-top: 1rem; font-size: 0.9rem;">
+                <div>
+                  <span class="text-muted">Completed Today:</span>
+                  <strong id="goals-completed-text" class="text-indigo">0 mins</strong>
+                </div>
+                <div>
+                  <span class="text-muted">Remaining to Target:</span>
+                  <strong id="goals-remaining-text" class="text-warning">120 mins</strong>
+                </div>
+                <div>
+                  <span class="text-muted">Target:</span>
+                  <strong id="goals-target-display">120 mins</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>⚙️ Adjust Daily Target</h3>
+              <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">
+                Recommended for full-time university students: 120 to 180 minutes of focused deep study per day.
+              </p>
+              <div style="display: flex; gap: 0.5rem;">
+                <input type="number" id="input-daily-target-minutes" class="input-text" value="120" min="10" max="600">
+                <button class="btn btn-primary" id="btn-save-daily-target">Save Target</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 6: DISTRACTION TRACKER -->
+        <section id="view-distractions" class="view-section">
+          <div class="view-header">
+            <div>
+              <h2>Distraction Tracker</h2>
+              <p>Log and analyze cognitive interruptions across Social Media, Messaging, Calls, and Entertainment.</p>
+            </div>
+            <button class="btn btn-ghost" id="btn-clear-distractions">Clear History</button>
+          </div>
+
+          <div class="card" style="margin-bottom: 1.5rem;">
+            <h3>Quick Interruption Logger</h3>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">
+              Click whenever an external or internal distraction occurs to identify your personal attention leaks.
+            </p>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <button class="btn btn-secondary btn-log-distraction" data-category="Social Media">📱 Social Media (IG / TikTok / YouTube)</button>
+              <button class="btn btn-secondary btn-log-distraction" data-category="Messaging">💬 Messaging (WhatsApp / Discord)</button>
+              <button class="btn btn-secondary btn-log-distraction" data-category="Calls">📞 Phone Calls</button>
+              <button class="btn btn-secondary btn-log-distraction" data-category="Entertainment">🎮 Entertainment / Browsing</button>
+              <button class="btn btn-secondary btn-log-distraction" data-category="Other">⚡ Other / Daydreaming</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title-row">
+              <h3>Recorded Interruption Log</h3>
+              <span class="badge badge-warning"><span id="distraction-total-count">0</span> Total Logged</span>
+            </div>
+            <div id="distractions-history-list" style="display: flex; flex-direction: column; gap: 0.5rem;">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 7: DIGITAL DETOX -->
+        <section id="view-detox" class="view-section">
+          <div class="view-header">
+            <div>
+              <h2>Digital Detox Mode</h2>
+              <p>Physical phone-free study environment to eliminate continuous dopamine prediction errors.</p>
+            </div>
+          </div>
+
+          <div class="card" style="text-align: center; padding: 3rem 1.5rem; max-width: 700px; margin: 0 auto;">
+            <div style="font-size: 3.5rem; margin-bottom: 1rem;">📵</div>
+            <h3>The Phone-Free Study Pledge</h3>
+            <p style="color: var(--text-secondary); margin: 1rem 0 1.5rem 0; font-size: 0.95rem; line-height: 1.6;">
+              "I commit to placing my smartphone out of arm's reach (face-down in a bag or across the room) for the next 30 minutes to preserve my working memory and eliminate notification anxiety."
+            </p>
+
+            <div class="alert alert-info" style="text-align: left; font-size: 0.82rem; margin-bottom: 1.5rem;">
+              <strong>Disclaimer:</strong> FocusLab is a web application and does not claim to lock or block external mobile applications on your phone. Digital Detox Mode provides an ethical behavioral commitment and study sprint reminder.
+            </div>
+
+            <button class="btn btn-primary" id="btn-start-detox" style="padding: 0.8rem 2rem; font-size: 1rem;">
+              🛡️ Activate Phone-Free Detox Session (30 Min)
+            </button>
+          </div>
+        </section>
+
+        <!-- VIEW 8: VIRTUAL TREE -->
+        <section id="view-tree" class="view-section">
+          <div class="view-header">
+            <div>
+              <h2>Virtual Tree Growth</h2>
+              <p>Visual representation of your focused study time. Each completed session nourishes your tree.</p>
+            </div>
+          </div>
+
+          <div class="dashboard-grid-2col">
+            <div class="card tree-garden-card">
+              <div class="tree-visual-box" id="tree-stage-visual">
+                <!-- SVG dynamically injected -->
+              </div>
+              <h3 id="tree-stage-name">Sprouting Seedling</h3>
+              <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.25rem;">
+                Stage progress: <span id="tree-progress-val">55%</span>
+              </p>
+
+              <div class="progress-bar-container" style="max-width: 300px; margin: 1rem auto;">
+                <div class="progress-bar-fill" id="tree-progress-bar" style="width: 55%;"></div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3>🌳 Garden Milestones & Growth Stages</h3>
+              <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem; font-size: 0.88rem;">
+                <div>
+                  <strong>Total Accumulated Focus:</strong>
+                  <span id="tree-total-minutes" class="text-indigo" style="font-weight: 700; margin-left: 0.5rem;">55 min</span>
+                </div>
+                <div>
+                  <strong>Fully Grown Mature Trees:</strong>
+                  <span id="tree-count-grown" class="text-success" style="font-weight: 700; margin-left: 0.5rem;">0</span>
+                </div>
+                <hr style="border: 0; border-top: 1px solid var(--border-subtle); margin: 0.5rem 0;">
+                <p style="color: var(--text-muted); font-size: 0.82rem;">
+                  <strong>Growth Architecture:</strong> A complete tree cycle requires 120 focused minutes across 5 stages:
+                  <br>1. Seed in Soil (0 - 24m)
+                  <br>2. Sprout (25 - 49m)
+                  <br>3. Sapling (50 - 74m)
+                  <br>4. Young Tree (75 - 99m)
+                  <br>5. Mature Flourishing Oak (100 - 120m)
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 9: ANALYTICS -->
+        <section id="view-analytics" class="view-section">
+          <div class="view-header">
+            <div>
+              <h2>Weekly Analytics & Cognitive Trends</h2>
+              <p>Explore your study duration, focus scores, and distraction patterns over time.</p>
+            </div>
+          </div>
+
+          <div class="dashboard-grid-2col">
+            <!-- Weekly Study Minutes & Focus Score Chart -->
+            <div class="card" style="min-height: 350px;">
+              <div class="card-title-row">
+                <h3>📅 Weekly Study Volume & Focus Score</h3>
+              </div>
+              <div style="position: relative; height: 260px; width: 100%;">
+                <canvas id="chart-weekly-study"></canvas>
+              </div>
+            </div>
+
+            <!-- Distraction Breakdown Doughnut Chart -->
+            <div class="card" style="min-height: 350px;">
+              <div class="card-title-row">
+                <h3>🍩 Distraction Category Distribution</h3>
+              </div>
+              <div style="position: relative; height: 260px; width: 100%;">
+                <canvas id="chart-distractions"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Focus Score Calculator Breakdown Explanation -->
+          <div class="card" style="margin-bottom: 1.5rem;">
+            <h3>📐 Focus Score Calculator Formula</h3>
+            <p style="color: var(--text-secondary); font-size: 0.88rem; margin: 0.5rem 0 1rem 0;">
+              FocusLab calculates a transparent score from 0–100 using study compliance and distraction penalties:
+            </p>
+            <div class="alert alert-info" style="font-family: monospace; font-size: 0.85rem;">
+              Focus Score = Clamp [ ((Actual Duration / Planned Duration) × 100) - (Distractions × 6) + Completion Bonus (5), 0, 100 ]
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">
+              <strong>Academic Notice:</strong> This score serves as an operational heuristic for self-monitoring study session quality and is not a clinically validated psychological diagnostic instrument.
+            </p>
+          </div>
+
+          <!-- Detailed Recommendations Section -->
+          <div class="card">
+            <h3>🎯 Tailored Learning Recommendations</h3>
+            <div id="analytics-recommendations-list" style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 10: SESSION HISTORY -->
+        <section id="view-history" class="view-section">
+          <div class="view-header">
+            <div>
+              <h2>Study Session History</h2>
+              <p>Searchable historical ledger of all focus sessions, pomodoro intervals, and experimental trials.</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="data-table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Date & Time</th>
+                    <th>Study Mode</th>
+                    <th>Duration</th>
+                    <th>Distractions</th>
+                    <th>Focus Score</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="history-table-body">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 11: EXPERIMENT LAB (BU100 Research Module) -->
+        <section id="view-experiment" class="view-section">
+          <div class="view-header">
+            <div>
+              <h2>BU100 Experiment Lab (SDG Action Lab)</h2>
+              <p>University-level within-subject experimental research: <strong>"Does a Phone-Free Study Environment Improve Student Concentration and Learning Performance?"</strong></p>
+            </div>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button class="btn btn-secondary" id="btn-load-demo-exp-data" title="Populate 10 sample participants for presentation">🧪 Load Demonstration Cohort</button>
+              <button class="btn btn-ghost" id="btn-reset-exp-data" title="Clear all experimental entries">↺ Reset to Empty</button>
+              <button class="btn btn-primary" id="btn-export-exp-csv">📥 Export CSV Dataset</button>
+            </div>
+          </div>
+
+          <!-- 12-Step Experimental Research Workflow Bar -->
+          <div class="experiment-workflow-bar">
+            <div class="exp-step-badge current">Step 1: Participant ID</div>
+            <div class="exp-step-badge">Step 2: Consent</div>
+            <div class="exp-step-badge">Step 3: Pre-Assessment</div>
+            <div class="exp-step-badge">Step 4: Condition A/B</div>
+            <div class="exp-step-badge">Step 5: 20-Min Study</div>
+            <div class="exp-step-badge">Step 6: Completion</div>
+            <div class="exp-step-badge">Step 7: 10-Q Quiz</div>
+            <div class="exp-step-badge">Step 8: Post-Assessment</div>
+            <div class="exp-step-badge">Step 9: 10-Min Break</div>
+            <div class="exp-step-badge">Step 10: Condition 2</div>
+            <div class="exp-step-badge">Step 11: Data Verify</div>
+            <div class="exp-step-badge">Step 12: Paired Report</div>
+          </div>
+
+          <!-- Active Participant Selection & Protocol Controls -->
+          <div class="card" style="margin-bottom: 1.5rem;">
+            <div class="card-title-row">
+              <div>
+                <h3>Participant Registration & Counterbalancing Control</h3>
+                <p style="color: var(--text-secondary); font-size: 0.85rem;" id="exp-order-badge">
+                  Condition Order: AB | Passage Order: P1-P2
+                </p>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <label style="font-size: 0.85rem; color: var(--text-secondary);">Select Participant:</label>
+                <select id="select-exp-participant" class="ambient-select" style="min-width: 140px;">
+                  <option value="P01">Participant P01 (Order: AB)</option>
+                  <option value="P02">Participant P02 (Order: BA)</option>
+                  <option value="P03">Participant P03 (Order: AB)</option>
+                  <option value="P04">Participant P04 (Order: BA)</option>
+                  <option value="P05">Participant P05 (Order: AB)</option>
+                  <option value="P06">Participant P06 (Order: BA)</option>
+                  <option value="P07">Participant P07 (Order: AB)</option>
+                  <option value="P08">Participant P08 (Order: BA)</option>
+                  <option value="P09">Participant P09 (Order: AB)</option>
+                  <option value="P10">Participant P10 (Order: BA)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Consent & Status -->
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; background: var(--bg-surface-elevated); border-radius: var(--radius-md); margin-bottom: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <strong>Selected: <span id="exp-participant-label">P01</span></strong>
+                <span id="exp-consent-status"><span class="status-pill status-warning">⚠️ Awaiting Consent</span></span>
+              </div>
+              <button class="btn btn-secondary" id="btn-give-consent">Record Informed Consent</button>
+            </div>
+
+            <!-- Condition Selection Cards (Condition A vs Condition B) -->
+            <div class="experiment-condition-banner">
+              <div class="condition-card btn-active" id="btn-select-cond-a">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                  <strong>Condition A: Phone-Free Study</strong>
+                  <span id="status-cond-a"><span class="badge badge-pending">Pending</span></span>
+                </div>
+                <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.4rem;">
+                  Smartphone placed away from desk. 20-minute study session followed by comprehensive 10-question quiz.
+                </p>
+              </div>
+
+              <div class="condition-card" id="btn-select-cond-b">
+                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                  <strong>Condition B: Normal Phone Access</strong>
+                  <span id="status-cond-b"><span class="badge badge-pending">Pending</span></span>
+                </div>
+                <p style="font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.4rem;">
+                  Smartphone remains on desk with usual notifications enabled. 20-minute study session followed by 10-question quiz.
+                </p>
+              </div>
+            </div>
+
+            <!-- Active Passage & Trial Actions -->
+            <div style="padding: 1rem; background: var(--bg-surface-elevated); border-radius: var(--radius-md);">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+                <div>
+                  <span class="text-muted" style="font-size: 0.78rem; text-transform: uppercase;">Standardized Study Material:</span>
+                  <div style="font-weight: 600;" id="exp-passage-label">Cognitive Load and Working Memory Architecture</div>
+                </div>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                  <button class="btn btn-secondary" id="btn-exp-pre-assessment">Step 3: Pre-Study Rating</button>
+                  <button class="btn btn-primary" id="btn-start-exp-study">Step 5: Start 20m Study Session</button>
+                  <button class="btn btn-secondary" id="btn-launch-exp-quiz">Step 7: 10-Question Quiz</button>
+                  <button class="btn btn-ghost" id="btn-start-exp-break">Step 9: 10m Washout Break</button>
+                </div>
+              </div>
+
+              <!-- Live Observer Phone Check Clicker -->
+              <div class="phone-check-counter-box">
+                <div>
+                  <strong>Observer Phone Check Counter (Condition B)</strong>
+                  <p style="font-size: 0.8rem; color: var(--text-secondary);">Click whenever the participant looks at, touches, or unlocks their phone during the 20-minute study window.</p>
+                </div>
+                <div class="counter-controls">
+                  <button class="btn btn-secondary" id="btn-phone-check-minus">-</button>
+                  <span class="counter-value" id="phone-check-count-display">0</span>
+                  <button class="btn btn-secondary" id="btn-phone-check-plus" style="background: rgba(239, 68, 68, 0.2); color: #F87171;">+ Log Check</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FOCUS IMPROVEMENT REPORT & PAIRED STATISTICAL COMPARISON -->
+          <div class="card" style="margin-bottom: 1.5rem;">
+            <div class="card-title-row">
+              <div>
+                <h3>Focus Improvement Report (Paired Statistical Comparison)</h3>
+                <p style="color: var(--text-secondary); font-size: 0.85rem;">
+                  Comparing within-subject performance between Phone-Free (A) and Normal Access (B) across paired participants.
+                </p>
+              </div>
+            </div>
+
+            <!-- Summary Cards for Paired Stats -->
+            <div class="stats-grid" id="exp-report-summary-cards">
+              <!-- Dynamically populated or empty state -->
+            </div>
+
+            <!-- Paired Charts Comparison -->
+            <div class="dashboard-grid-equal" style="margin: 1.5rem 0;">
+              <div style="height: 250px;">
+                <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem;">Average Quiz Score Comparison (/10)</h4>
+                <canvas id="chart-exp-quiz-comparison"></canvas>
+              </div>
+              <div style="height: 250px;">
+                <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem;">Average Concentration Rating Comparison (/5)</h4>
+                <canvas id="chart-exp-conc-comparison"></canvas>
+              </div>
+            </div>
+
+            <!-- Participant Comparison Table -->
+            <div class="data-table-wrapper" style="margin-top: 1.5rem;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Participant ID</th>
+                    <th>Condition Order</th>
+                    <th>Phone-Free Quiz (A)</th>
+                    <th>Normal Access Quiz (B)</th>
+                    <th>Quiz Diff (A - B)</th>
+                    <th>Concentration (A vs B)</th>
+                    <th>Phone Checks (B)</th>
+                  </tr>
+                </thead>
+                <tbody id="exp-results-table-body">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Scientific Interpretation & Book Connections -->
+            <div id="exp-report-interpretation">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 12: FOCUS CHALLENGE -->
+        <section id="view-challenge" class="view-section">
+          <div class="view-header">
+            <div>
+              <h2>Focus Challenge Mode</h2>
+              <p>The 20-Minute Deep Work Sprint. Test your daily cognitive stamina and earn mastery badges.</p>
+            </div>
+          </div>
+
+          <div class="dashboard-grid-2col">
+            <div class="card" style="text-align: center; padding: 2.5rem 1.5rem;">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
+              <h3>The 20-Minute Zero-Distraction Sprint</h3>
+              <p style="color: var(--text-secondary); margin: 0.75rem 0 1.5rem 0; font-size: 0.9rem;">
+                Complete a continuous 20-minute sprint without a single recorded distraction or tab switch to claim today's Focus Badge.
+              </p>
+              <button class="btn btn-primary" id="btn-start-challenge" style="padding: 0.75rem 2rem;">
+                🔥 Launch 20-Minute Sprint
+              </button>
+            </div>
+
+            <div class="card">
+              <h3>🎖️ Student Achievement Badges</h3>
+              <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: var(--bg-surface-elevated); border-radius: var(--radius-md);">
+                  <span style="font-size: 1.8rem;">🌅</span>
+                  <div>
+                    <strong>Morning Champion</strong>
+                    <div style="font-size: 0.78rem; color: var(--text-secondary);">Complete a 25-minute sprint before 10:00 AM.</div>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: var(--bg-surface-elevated); border-radius: var(--radius-md);">
+                  <span style="font-size: 1.8rem;">🎯</span>
+                  <div>
+                    <strong>Sprint Master</strong>
+                    <div style="font-size: 0.78rem; color: var(--text-secondary);">Complete 4 consecutive focus sessions in one day.</div>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: var(--bg-surface-elevated); border-radius: var(--radius-md);">
+                  <span style="font-size: 1.8rem;">🧘</span>
+                  <div>
+                    <strong>Zen Researcher</strong>
+                    <div style="font-size: 0.78rem; color: var(--text-secondary);">Participate in both Condition A and B in the Experiment Lab.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 13: LEADERBOARD -->
+        <section id="view-leaderboard" class="view-section">
+          <div class="view-header">
+            <div>
+              <h2>Peer Leaderboard</h2>
+              <p>Anonymous peer study rankings by completed focus minutes and study streaks.</p>
+            </div>
+          </div>
+
+          <div class="alert alert-info" style="font-size: 0.85rem;">
+            <strong>Privacy & Ethics Protection:</strong> All student accounts use randomized anonymous identifiers. No personal names or private phone activities are shared. Clearly labelled as BU100 Demonstration Cohort.
+          </div>
+
+          <div class="card">
+            <div class="data-table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Anonymous Handle</th>
+                    <th>Total Study Time</th>
+                    <th>Sessions</th>
+                    <th>Streak</th>
+                  </tr>
+                </thead>
+                <tbody id="leaderboard-table-body">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 14: AI STUDY ASSISTANT -->
+        <section id="view-assistant" class="view-section">
+          <div class="view-header">
+            <div>
+              <h2>AI Study Assistant & Routine Planner</h2>
+              <p>Deterministic academic advisory engine with tailored study routines, memory science, and BU100 reading synthesis.</p>
+            </div>
+          </div>
+
+          <div class="alert alert-info" style="font-size: 0.82rem;">
+            <strong>System Disclosure:</strong> FocusLab Study Intelligence uses a predefined, deterministic rule-based knowledge model programmed with academic research in cognitive ergonomics. It is not connected to a live generative LLM API.
+          </div>
+
+          <div class="dashboard-grid-2col">
+            <!-- Chat Assistant Interface -->
+            <div class="chat-container">
+              <div class="chat-messages" id="assistant-chat-messages">
+                <div class="chat-bubble chat-bubble-assistant">
+                  <div class="assistant-header">
+                    <span class="bot-icon">🤖</span>
+                    <strong>FocusLab Academic Assistant</strong>
+                    <span class="badge badge-assistant">Rule-Based</span>
+                  </div>
+                  <div class="assistant-body">
+                    Hello! I can help you structure an optimized study routine, apply memory techniques like Spaced Repetition or the Feynman Method, eliminate digital distraction, and explain the BU100 core texts (*Scout Mindset*, *Calling Bullshit*, *Thinking Fast & Slow*). What can I help you with today?
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Prompt Pills -->
+              <div class="chat-prompt-pills">
+                <button class="btn-prompt-pill" data-prompt="How do I optimize my daily study routine?">Daily Routine</button>
+                <button class="btn-prompt-pill" data-prompt="How does Spaced Repetition work?">Spaced Repetition</button>
+                <button class="btn-prompt-pill" data-prompt="Explain the Feynman Technique">Feynman Method</button>
+                <button class="btn-prompt-pill" data-prompt="How does phone distraction affect memory?">Phone Distraction</button>
+                <button class="btn-prompt-pill" data-prompt="Explain Scout Mindset in research">Scout Mindset</button>
+                <button class="btn-prompt-pill" data-prompt="How does Thinking Fast and Slow connect to studying?">Kahneman System 1 & 2</button>
+              </div>
+
+              <!-- Chat Input Bar -->
+              <div class="chat-input-bar">
+                <input type="text" id="input-assistant-query" class="input-text" placeholder="Ask about study routines, exam stress, memory science...">
+                <button class="btn btn-primary" id="btn-send-assistant-query">Send</button>
+              </div>
+            </div>
+
+            <!-- Interactive Study Timetable Generator -->
+            <div class="card">
+              <h3>📅 Daily Study Timetable Generator</h3>
+              <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">
+                Generate an hour-by-hour university study schedule with planned breaks based on cognitive science.
+              </p>
+
+              <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                <div>
+                  <label style="font-size: 0.82rem; color: var(--text-secondary);">Subjects / Tasks to Cover:</label>
+                  <input type="text" id="input-schedule-subjects" class="input-text" style="width: 100%;" placeholder="e.g. BU100 Research, Data Structures, Discrete Math">
+                </div>
+
+                <div style="display: flex; gap: 0.5rem;">
+                  <div style="flex: 1;">
+                    <label style="font-size: 0.82rem; color: var(--text-secondary);">Daily Study Hours:</label>
+                    <select id="select-schedule-hours" class="ambient-select" style="width: 100%;">
+                      <option value="2">2 Hours</option>
+                      <option value="3">3 Hours</option>
+                      <option value="4" selected>4 Hours (Standard)</option>
+                      <option value="5">5 Hours</option>
+                      <option value="6">6 Hours</option>
+                    </select>
+                  </div>
+                  <div style="flex: 1;">
+                    <label style="font-size: 0.82rem; color: var(--text-secondary);">Peak Energy Time:</label>
+                    <select id="select-schedule-peak" class="ambient-select" style="width: 100%;">
+                      <option value="morning">Morning (09:00 AM)</option>
+                      <option value="afternoon">Afternoon (02:00 PM)</option>
+                      <option value="evening">Evening (06:00 PM)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <button class="btn btn-primary" id="btn-generate-schedule" style="margin-top: 0.5rem;">Generate Optimized Timetable</button>
+              </div>
+
+              <div id="schedule-result-box" style="margin-top: 1.25rem;">
+                <!-- Generated Timetable appears here -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 15: SETTINGS -->
+        <section id="view-settings" class="view-section">
+          <div class="view-header">
+            <div>
+              <h2>Platform Settings & Data Management</h2>
+              <p>Configure notification sound alerts, break reminders, and export or backup locally stored data.</p>
+            </div>
+          </div>
+
+          <div class="dashboard-grid-equal">
+            <!-- Notification Controls -->
+            <div class="card">
+              <h3>🔔 Notification & Sound Controls</h3>
+              <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                <label style="display: flex; align-items: center; justify-content: space-between; font-size: 0.9rem;">
+                  <span>Audio Chimes & Sound Effects</span>
+                  <input type="checkbox" id="setting-sound-enabled" checked class="task-check">
+                </label>
+                <label style="display: flex; align-items: center; justify-content: space-between; font-size: 0.9rem;">
+                  <span>Session Completion & Break Alerts</span>
+                  <input type="checkbox" id="setting-break-alerts" checked class="task-check">
+                </label>
+                <label style="display: flex; align-items: center; justify-content: space-between; font-size: 0.9rem;">
+                  <span>Daily Goal Milestone Alerts</span>
+                  <input type="checkbox" id="setting-goal-alerts" checked class="task-check">
+                </label>
+                <label style="display: flex; align-items: center; justify-content: space-between; font-size: 0.9rem;">
+                  <span>Digital Detox Reminders</span>
+                  <input type="checkbox" id="setting-detox-reminders" checked class="task-check">
+                </label>
+              </div>
+            </div>
+
+            <!-- Data Management & Privacy -->
+            <div class="card">
+              <h3>💾 Local Data Storage & Backup</h3>
+              <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0.5rem 0 1rem 0;">
+                All FocusLab data is stored securely in your browser's LocalStorage. It is completely offline-friendly, private, and not uploaded to an external cloud database.
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                <button class="btn btn-secondary" id="btn-export-all-data">📥 Export Full Platform Backup (JSON)</button>
+                <button class="btn btn-danger" id="btn-clear-all-data">⚠️ Reset LocalStorage to Factory State</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- MODAL: PRE-STUDY ASSESSMENT -->
+  <div class="modal-overlay" id="modal-pre-assessment">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Pre-Study Assessment</h3>
+        <button class="btn-icon modal-close-btn" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          Take a moment to record your mental readiness before starting this study session:
+        </p>
+        
+        <div>
+          <label style="font-size: 0.88rem; font-weight: 600;">Current Concentration Level (1 = Distracted, 5 = Deeply Focused):</label>
+          <div class="rating-button-group">
+            <label class="rating-label"><input type="radio" name="pre_concentration" value="1"> 1</label>
+            <label class="rating-label"><input type="radio" name="pre_concentration" value="2"> 2</label>
+            <label class="rating-label"><input type="radio" name="pre_concentration" value="3" checked> 3</label>
+            <label class="rating-label"><input type="radio" name="pre_concentration" value="4"> 4</label>
+            <label class="rating-label"><input type="radio" name="pre_concentration" value="5"> 5</label>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size: 0.88rem; font-weight: 600;">Anticipated Distraction Level (1 = Low, 5 = High):</label>
+          <div class="rating-button-group">
+            <label class="rating-label"><input type="radio" name="pre_distraction" value="1"> 1</label>
+            <label class="rating-label"><input type="radio" name="pre_distraction" value="2" checked> 2</label>
+            <label class="rating-label"><input type="radio" name="pre_distraction" value="3"> 3</label>
+            <label class="rating-label"><input type="radio" name="pre_distraction" value="4"> 4</label>
+            <label class="rating-label"><input type="radio" name="pre_distraction" value="5"> 5</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="btn-submit-pre-assessment">Confirm & Start Session</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: POST-STUDY ASSESSMENT -->
+  <div class="modal-overlay" id="modal-post-assessment">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Session Complete: Post-Study Reflection</h3>
+        <button class="btn-icon modal-close-btn" aria-label="Close">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          Rate your actual focus during the completed session:
+        </p>
+
+        <div>
+          <label style="font-size: 0.88rem; font-weight: 600;">Actual Concentration Experienced (1 = Low, 5 = Deep Immersion):</label>
+          <div class="rating-button-group">
+            <label class="rating-label"><input type="radio" name="post_concentration" value="1"> 1</label>
+            <label class="rating-label"><input type="radio" name="post_concentration" value="2"> 2</label>
+            <label class="rating-label"><input type="radio" name="post_concentration" value="3"> 3</label>
+            <label class="rating-label"><input type="radio" name="post_concentration" value="4" checked> 4</label>
+            <label class="rating-label"><input type="radio" name="post_concentration" value="5"> 5</label>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size: 0.88rem; font-weight: 600;">Mental Fatigue (1 = Fresh, 5 = Exhausted):</label>
+          <div class="rating-button-group">
+            <label class="rating-label"><input type="radio" name="post_fatigue" value="1"> 1</label>
+            <label class="rating-label"><input type="radio" name="post_fatigue" value="2" checked> 2</label>
+            <label class="rating-label"><input type="radio" name="post_fatigue" value="3"> 3</label>
+            <label class="rating-label"><input type="radio" name="post_fatigue" value="4"> 4</label>
+            <label class="rating-label"><input type="radio" name="post_fatigue" value="5"> 5</label>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size: 0.88rem; font-weight: 600;">Session Notes & Reflections:</label>
+          <textarea id="post-session-feedback" class="input-text" style="width: 100%; height: 75px; margin-top: 0.3rem;" placeholder="What helped or hindered your focus during this session?"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="btn-submit-post-assessment">Save Study Session Record</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: EXPERIMENT PRE-ASSESSMENT -->
+  <div class="modal-overlay" id="modal-exp-pre-assessment">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Step 3: Participant Pre-Study Assessment</h3>
+        <button class="btn-icon modal-close-btn">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          Standardized baseline measurement under BU100 experimental protocol:
+        </p>
+        <div>
+          <label style="font-size: 0.88rem; font-weight: 600;">Concentration Level (1-5):</label>
+          <div class="rating-button-group">
+            <label class="rating-label"><input type="radio" name="exp_pre_conc" value="1"> 1</label>
+            <label class="rating-label"><input type="radio" name="exp_pre_conc" value="2"> 2</label>
+            <label class="rating-label"><input type="radio" name="exp_pre_conc" value="3"> 3</label>
+            <label class="rating-label"><input type="radio" name="exp_pre_conc" value="4" checked> 4</label>
+            <label class="rating-label"><input type="radio" name="exp_pre_conc" value="5"> 5</label>
+          </div>
+        </div>
+        <div>
+          <label style="font-size: 0.88rem; font-weight: 600;">Current Distraction Level (1-5):</label>
+          <div class="rating-button-group">
+            <label class="rating-label"><input type="radio" name="exp_pre_dist" value="1"> 1</label>
+            <label class="rating-label"><input type="radio" name="exp_pre_dist" value="2" checked> 2</label>
+            <label class="rating-label"><input type="radio" name="exp_pre_dist" value="3"> 3</label>
+            <label class="rating-label"><input type="radio" name="exp_pre_dist" value="4"> 4</label>
+            <label class="rating-label"><input type="radio" name="exp_pre_dist" value="5"> 5</label>
+          </div>
+        </div>
+        <div>
+          <label style="font-size: 0.88rem; font-weight: 600;">Subjective Energy Level (1-5):</label>
+          <div class="rating-button-group">
+            <label class="rating-label"><input type="radio" name="exp_pre_energy" value="1"> 1</label>
+            <label class="rating-label"><input type="radio" name="exp_pre_energy" value="2"> 2</label>
+            <label class="rating-label"><input type="radio" name="exp_pre_energy" value="3" checked> 3</label>
+            <label class="rating-label"><input type="radio" name="exp_pre_energy" value="4"> 4</label>
+            <label class="rating-label"><input type="radio" name="exp_pre_energy" value="5"> 5</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="btn-submit-exp-pre">Save Baseline Assessment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: EXPERIMENT 20-MIN READING SESSION & PASSAGE VIEWER -->
+  <div class="modal-overlay" id="modal-exp-reading-session">
+    <div class="modal-window modal-wide">
+      <div class="modal-header">
+        <h3 id="modal-passage-title">Standardized Study Material</h3>
+        <button class="btn-icon modal-close-btn">✕</button>
+      </div>
+      <div class="modal-body" id="modal-passage-content" style="max-height: 65vh; overflow-y: auto;">
+        <!-- Passage Markdown injected here -->
+      </div>
+      <div class="modal-footer" style="justify-content: space-between;">
+        <span class="text-muted" style="font-size: 0.82rem;">20-minute timer active. Read thoroughly before proceeding to quiz.</span>
+        <button class="btn btn-primary" data-dismiss="modal">I Have Completed Reading →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: EXPERIMENT 10-QUESTION QUIZ -->
+  <div class="modal-overlay" id="modal-exp-quiz">
+    <div class="modal-window modal-wide">
+      <div class="modal-header">
+        <h3 id="exp-quiz-modal-title">10-Question Knowledge Assessment</h3>
+        <button class="btn-icon modal-close-btn">✕</button>
+      </div>
+      <div class="modal-body" id="exp-quiz-questions-container" style="max-height: 65vh; overflow-y: auto;">
+        <!-- 10 Questions injected here -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="btn-submit-exp-quiz">Submit Assessment for Grading</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: EXPERIMENT POST-ASSESSMENT & DATA VERIFY -->
+  <div class="modal-overlay" id="modal-exp-post-assessment">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>Step 8 & 11: Experimental Trial Verification</h3>
+        <button class="btn-icon modal-close-btn">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          Finalize post-study concentration ratings and researcher verification:
+        </p>
+
+        <div>
+          <label style="font-size: 0.88rem; font-weight: 600;">Post-Study Concentration Rating (1-5):</label>
+          <div class="rating-button-group">
+            <label class="rating-label"><input type="radio" name="exp_post_conc" value="1"> 1</label>
+            <label class="rating-label"><input type="radio" name="exp_post_conc" value="2"> 2</label>
+            <label class="rating-label"><input type="radio" name="exp_post_conc" value="3"> 3</label>
+            <label class="rating-label"><input type="radio" name="exp_post_conc" value="4" checked> 4</label>
+            <label class="rating-label"><input type="radio" name="exp_post_conc" value="5"> 5</label>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size: 0.88rem; font-weight: 600;">Mental Fatigue (1 = Fresh, 5 = Drained):</label>
+          <div class="rating-button-group">
+            <label class="rating-label"><input type="radio" name="exp_post_fatigue" value="1"> 1</label>
+            <label class="rating-label"><input type="radio" name="exp_post_fatigue" value="2" checked> 2</label>
+            <label class="rating-label"><input type="radio" name="exp_post_fatigue" value="3"> 3</label>
+            <label class="rating-label"><input type="radio" name="exp_post_fatigue" value="4"> 4</label>
+            <label class="rating-label"><input type="radio" name="exp_post_fatigue" value="5"> 5</label>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 0.75rem;">
+          <label style="font-size: 0.85rem; font-weight: 600;">Perceived Distraction Count (Self-Reported):</label>
+          <input type="number" id="input-exp-perceived-distractions" class="input-text" value="0" min="0" style="width: 100%;">
+        </div>
+
+        <div style="margin-bottom: 0.75rem;">
+          <label style="font-size: 0.85rem; font-weight: 600;">Manual Quiz Score Override (Optional, out of 10):</label>
+          <input type="number" id="input-manual-quiz-score" class="input-text" placeholder="Leave blank to use auto-graded score" min="0" max="10" step="0.5" style="width: 100%;">
+        </div>
+
+        <div>
+          <label style="font-size: 0.85rem; font-weight: 600;">Participant Feedback / Observer Notes:</label>
+          <textarea id="input-exp-feedback" class="input-text" style="width: 100%; height: 60px;" placeholder="Observer notes on participant attention, phone vibrations, or reading speed..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" id="btn-submit-exp-post">Verify & Save Trial Data</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DIGITAL DETOX ACTIVE FULLSCREEN REMINDER -->
+  <div class="modal-overlay" id="modal-detox-active">
+    <div class="modal-window" style="text-align: center; max-width: 500px;">
+      <div class="modal-header" style="justify-content: center;">
+        <h3 style="color: #F87171;">🛡️ Digital Detox Mode Active</h3>
+      </div>
+      <div class="modal-body">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">📵</div>
+        <h4>Keep Your Smartphone Away</h4>
+        <p style="color: var(--text-secondary); margin: 1rem 0; font-size: 0.95rem;">
+          Your 30-minute phone-free study sprint is running. Stay focused on your notes and reading materials.
+        </p>
+      </div>
+      <div class="modal-footer" style="justify-content: center;">
+        <button class="btn btn-secondary" id="btn-exit-detox">Exit Detox Mode</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: BU100 READING CONNECTIONS & METHODOLOGY -->
+  <div class="modal-overlay" id="modal-methodology">
+    <div class="modal-window modal-wide">
+      <div class="modal-header">
+        <h3>BU100 Reading Connections & Research Methodology</h3>
+        <button class="btn-icon modal-close-btn">✕</button>
+      </div>
+      <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+        <h4>University Experimental Research Framework</h4>
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+          This research project was designed for Bennett University under the BU100 SDG Action Lab (TREP) End-Term Project, addressing <strong>SDG 4 (Quality Education)</strong> and <strong>SDG 3 (Good Health and Well-Being)</strong>.
+        </p>
+
+        <div class="book-alignment-grid">
+          <div class="book-box">
+            <h5>1. The Scout Mindset — Julia Galef</h5>
+            <p>
+              In *The Scout Mindset*, Julia Galef distinguishes between the "Soldier Mindset" (motivated reasoning, defending prior assumptions) and the "Scout Mindset" (seeking an accurate map of reality). In FocusLab, we resist the soldier urge to guarantee that "phone-free study must always win." Instead, we report real differences honestly, balance condition orders, and acknowledge cases where phone checks had minimal impact.
+            </p>
+          </div>
+          <div class="book-box">
+            <h5>2. Calling Bullshit — Carl T. Bergstrom & Jevin D. West</h5>
+            <p>
+              Bergstrom and West argue that statistical charts and metrics can be manipulated to produce misleading claims. To combat data distortions in FocusLab:
+              <br>• Every chart starts its vertical axis from zero to prevent exaggerated visual slope differences.
+              <br>• We explicitly state that an $N=10$ student sample provides preliminary educational insights, not population-level causality.
+              <br>• Missing participant data is transparently flagged rather than interpolated.
+            </p>
+          </div>
+          <div class="book-box">
+            <h5>3. Thinking, Fast and Slow — Daniel Kahneman</h5>
+            <p>
+              Kahneman’s framework explains the cognitive cost of smartphones:
+              <br>• <strong>System 1</strong>: Fast, automatic dopamine impulses prompt reflexive smartphone glances whenever a screen lights up.
+              <br>• <strong>System 2</strong>: Deliberate, analytical comprehension demands intense metabolic energy.
+              <br>When students keep a phone visible, System 2 must expend precious executive energy continuously suppressing System 1 impulses, causing "cognitive drain."
+            </p>
+          </div>
+        </div>
+
+        <h4 style="margin-top: 1.5rem;">Experimental Counterbalancing Protocol</h4>
+        <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6;">
+          To mitigate order effects and fatigue effects, participants alternate condition order (Participant P01 completes Condition A first, P02 completes Condition B first, and so forth). Furthermore, the two standardized reading passages (Passage 1: Cognitive Load Theory; Passage 2: Neuroscience of Habit Loops) and their 10-question quizzes are rotated to ensure passage familiarity does not bias test scores.
+        </p>
+
+        <h4 style="margin-top: 1.5rem;">BU100 Project Research Team</h4>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; margin-top: 0.5rem;">
+          <div style="background: var(--bg-surface-elevated); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+            <strong>Hannu Kumar Gupta</strong>
+            <div style="font-size: 0.78rem; color: var(--primary);">Enrollment No: S26CSEU3130</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Full-Stack Architecture & Engine Lead</div>
+          </div>
+          <div style="background: var(--bg-surface-elevated); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+            <strong>Vidushi Yaduvanshi</strong>
+            <div style="font-size: 0.78rem; color: var(--accent-purple);">Enrollment No: S26BCMCAU0004</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">Research Design & Data Analysis</div>
+          </div>
+          <div style="background: var(--bg-surface-elevated); padding: 0.75rem 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+            <strong>Nitya Bhadoria</strong>
+            <div style="font-size: 0.78rem; color: var(--accent-emerald);">Enrollment No: M26BCMIFU0077</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem;">UI/UX Design & Experimental Protocols</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal">Close Documentation</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: HELP & FAQ -->
+  <div class="modal-overlay" id="modal-help-faq">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3>FocusLab User Guide & FAQ</h3>
+        <button class="btn-icon modal-close-btn">✕</button>
+      </div>
+      <div class="modal-body" style="max-height: 65vh; overflow-y: auto;">
+        <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">Frequently Asked Questions</h4>
+        
+        <div style="margin-bottom: 1rem;">
+          <strong>Q: Does FocusLab require an internet connection?</strong>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">A: No! FocusLab uses browser LocalStorage and procedural Web Audio API synthesis for ambient sound. It functions completely offline once loaded.</p>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <strong>Q: How is my Focus Score calculated?</strong>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">A: It calculates duration compliance (ratio of completed study time to planned time), deducts 6 points per logged interruption, and awards a +5 point bonus for finishing without aborting.</p>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <strong>Q: How do I export experimental data for my research report?</strong>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">A: Navigate to the Experiment Lab and click <strong>"Export CSV Dataset"</strong>. This generates an RFC4180-compliant CSV spreadsheet of all participant trials.</p>
+        </div>
+
+        <div style="margin-bottom: 1rem;">
+          <strong>Q: Can I use FocusLab on my phone?</strong>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">A: Yes! FocusLab features a fully responsive mobile layout with a collapsible drawer navigation sidebar.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal">Got it</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ONBOARDING WELCOME TOUR -->
+  <div class="modal-overlay" id="modal-onboarding">
+    <div class="modal-window" style="text-align: center; max-width: 520px;">
+      <div class="modal-body" style="padding: 2.5rem 1.5rem;">
+        <div style="font-size: 3.5rem; margin-bottom: 1rem;">🎓</div>
+        <h2>Welcome to FocusLab</h2>
+        <p style="font-size: 0.95rem; color: var(--primary); font-weight: 600; margin-bottom: 0.5rem;">Study Smarter. Stay Focused. Grow Every Day.</p>
+        <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.6; margin-bottom: 1rem;">
+          FocusLab is Bennett University's student productivity and experimental research platform for BU100 SDG Action Lab (TREP). Use it to manage tasks, cultivate your virtual tree, test focus endurance, and conduct research on phone-free study environments.
+        </p>
+        <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem; background: var(--bg-surface-elevated); padding: 0.6rem; border-radius: var(--radius-md);">
+          <strong>Project Team:</strong> Hannu Kumar Gupta (S26CSEU3130) • Vidushi Yaduvanshi (S26BCMCAU0004) • Nitya Bhadoria (M26BCMIFU0077)
+        </div>
+        <button class="btn btn-primary" data-dismiss="modal" style="padding: 0.75rem 2rem; font-size: 1rem;">
+          Get Started 🚀
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Application Scripts (Loaded in dependency order) -->
+  <script src="storage.js"></script>
+  <script src="audio.js"></script>
+  <script src="timer.js"></script>
+  <script src="experiment.js"></script>
+  <script src="assistant.js"></script>
+  <script src="analytics.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
